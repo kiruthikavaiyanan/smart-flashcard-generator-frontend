@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
+
 function Dashboard() {
   // State Management
   const [notes, setNotes] = useState("");
@@ -32,7 +34,7 @@ function Dashboard() {
   // API Functions
   const loadHistory = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/flashcards");
+      const res = await fetch(`${API_BASE_URL}/flashcards`);
       const data = await res.json();
       setHistory(Array.isArray(data) ? data : []);
     } catch (err) {
@@ -50,7 +52,7 @@ function Dashboard() {
     setError(null);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/generate-flashcards", {
+      const res = await fetch(`${API_BASE_URL}/generate-flashcards`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: notes }),
@@ -84,7 +86,7 @@ function Dashboard() {
     if (!window.confirm("Delete this item?")) return;
 
     try {
-      await fetch(`http://127.0.0.1:8000/flashcards/${id}`, {
+      await fetch(`${API_BASE_URL}/flashcards/${id}`, {
         method: "DELETE",
       });
       await loadHistory();
@@ -103,7 +105,7 @@ function Dashboard() {
     if (!window.confirm("Are you sure you want to delete all history?")) return;
 
     try {
-      await fetch("http://127.0.0.1:8000/delete-all-flashcards", {
+      await fetch(`${API_BASE_URL}/delete-all-flashcards`, {
         method: "DELETE",
       });
       setHistory([]);
