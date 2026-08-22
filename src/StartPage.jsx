@@ -7,7 +7,7 @@ export default function StartPage() {
   const [currentSubject, setCurrentSubject] = useState(0);
   const [currentGrade, setCurrentGrade] = useState("All Grades");
   const [hoveredSubject, setHoveredSubject] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode] = useState(true);
   
   // Login state
   const [email, setEmail] = useState("");
@@ -262,17 +262,6 @@ export default function StartPage() {
               }}>Flash AI</h1>
               <span style={styles.logoBadge}>Pro</span>
             </div>
-            <button 
-              onClick={() => setDarkMode(!darkMode)} 
-              style={{ 
-                ...styles.themeToggle,
-                background: darkMode ? "#3b82f6" : "#8b5cf6",
-                color: "#fff",
-              }}
-            >
-              <i className={darkMode ? "fas fa-sun" : "fas fa-moon"} style={{ marginRight: "8px" }}></i>
-              {darkMode ? "☀️ Light" : "🌙 Dark"}
-            </button>
           </div>
 
           {/* Featured Subject Card */}

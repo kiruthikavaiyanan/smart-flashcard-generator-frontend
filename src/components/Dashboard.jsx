@@ -9,7 +9,7 @@ function Dashboard() {
   const [history, setHistory] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [search, setSearch] = useState("");
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [notification, setNotification] = useState({ show: false, message: "", type: "info" });
@@ -244,14 +244,6 @@ function Dashboard() {
 
         {!sidebarCollapsed && (
           <>
-            <button 
-              onClick={() => setDarkMode(!darkMode)} 
-              style={{ ...styles.toggleBtn, background: darkMode ? "#3b82f6" : "#8b5cf6" }}
-            >
-              <i className={darkMode ? "fas fa-sun" : "fas fa-moon"} style={{ marginRight: "8px" }}></i>
-              {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
-            </button>
-
             {/* Stats Cards */}
             <div style={styles.statsContainer}>
               <div style={{ ...styles.statCard, background: theme.bg }}>
